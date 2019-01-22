@@ -218,6 +218,7 @@
     help() {
       console.table({
         o: 'Current order',
+        co: 'Current connect order',
         gc: 'Global configs',
         j: 'Undertaker jacket object used in the title section for the current order',
         sa: 'Settlement agency on from global configs that\'s currently on the order',
@@ -246,6 +247,18 @@
         throw new Error('You\'re not in an order');
       }
       return order;
+    },
+    
+    // Connect Order
+    get co() {
+      let order = App.Layout.stageInstance().data.order;
+      if (!order) {
+        order = Router.current().data().order; 
+      }
+      if (!order) {
+        throw new Error('You\'re not in an order');
+      }
+      return Connect.Orders.findOne(order._id);
     },
 
     // Global configs
