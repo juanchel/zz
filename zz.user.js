@@ -218,6 +218,7 @@
     help() {
       console.table({
         o: 'Current order',
+        co: 'Current connect order',
         gc: 'Global configs',
         j: 'Undertaker jacket object used in the title section for the current order',
         sa: 'Settlement agency on from global configs that\'s currently on the order',
