@@ -247,6 +247,18 @@
       }
       return order;
     },
+    
+    // Connect Order
+    get co() {
+      let order = App.Layout.stageInstance().data.order;
+      if (!order) {
+        order = Router.current().data().order; 
+      }
+      if (!order) {
+        throw new Error('You\'re not in an order');
+      }
+      return Connect.Orders.findOne(order._id);
+    },
 
     // Global configs
     get gc() {
